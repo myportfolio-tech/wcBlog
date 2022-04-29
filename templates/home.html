@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
+{% extends "layout.html" %}
+{% block content %}
+
     <h1>WeCloud Blog</h1>
-</body>
-</html>
+    {% for post in posts %}
+        <h1>{{ post.title }} </h1>
+        <h4>By {{ post.author }} on {{ post.post_date }} </h4>
+        <p>{{ post.content}} </p>
+
+    {% endfor %}
+
+{% endblock content %}
