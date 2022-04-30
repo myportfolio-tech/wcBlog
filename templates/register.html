@@ -34,11 +34,21 @@
                         {{ form.email(class="form-control form-control-lg") }}
                     {% endif %}
                 </div>
-
+    <!-- Passowd -->
                 <div class="row mb-3">
                     {{ form.password.label(class="form-control-label") }}
-                    {{ form.password(class="form-control form-control-lg") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-lg") }}
+                    {% endif %}
                 </div>
+
     <!-- Confirm Passowd -->
                 <div class="row mb-3">
                     {{ form.confirm_password.label(class="form-control-label") }}
