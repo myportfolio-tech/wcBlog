@@ -31,14 +31,14 @@ def about():
     return render_template('about.html', title='About')
 
 
-@app.reoute("/register")
+@app.route("/register", methods=["GET", "POST"])
 def register():
     form = RegistrationForm()
     return render_template('register.html', title='Register', form=form)
 
 
-@app.reoute("/login")
-def register():
+@app.route("/login")
+def login():
     form = LoginForm()
     return render_template('login.html', title='Sign In', form=form)
 

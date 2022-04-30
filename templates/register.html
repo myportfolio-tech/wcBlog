@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }} 
+            <fieldset class="row mb-3">
+                <legend class="border-bottom mb-4">Join Today</legend>
+                <div class="row mb-3">
+                    {{ form.username.label(class="form-control-label") }}
+                    {{ form.username(class="form-control form-control-lg") }}
+                </div>
+                <div class="row mb-3">
+                    {{ form.email.label(class="form-control-label") }}
+                    {{ form.email(class="form-control form-control-lg") }}
+                </div>
+                <div class="row mb-3">
+                    {{ form.password.label(class="form-control-label") }}
+                    {{ form.password(class="form-control form-control-lg") }}
+                </div>
+                <div class="row mb-3">
+                    {{ form.confirm_password.label(class="form-control-label") }}
+                    {{ form.confirm_password(class="form-control form-control-lg") }}
+                </div>
+            </fieldset>
+            <div class="">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+    <div class="norder-top pt-3">
+        <small class="text-muted">
+            Already Have an Account? <a href="{{ url_for('login') }}" class="ml-2">Sign in</a>
+        </small>
+
+    </div>
+{% endblock content %}
