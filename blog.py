@@ -1,6 +1,8 @@
 from flask import Flask, render_template, url_for
+from forms import RegistrationForm, LoginForm
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = '6b34cb86b01197b548d9a959b8cba178'
 
 posts = [
     {
@@ -27,6 +29,18 @@ def home():
 @app.route("/about")
 def about():
     return render_template('about.html', title='About')
+
+
+@app.reoute("/register")
+def register():
+    form = RegistrationForm()
+    return render_template('register.html', title='Register', form=form)
+
+
+@app.reoute("/login")
+def register():
+    form = LoginForm()
+    return render_template('login.html', title='Sign In', form=form)
 
 
 if __name__ == '__main__':
