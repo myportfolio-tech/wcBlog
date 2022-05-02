@@ -1,6 +1,5 @@
 import secrets
 import os
-from turtle import title
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
 from weblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
