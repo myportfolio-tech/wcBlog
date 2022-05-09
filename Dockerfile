@@ -12,3 +12,10 @@ COPY . /weblog
 
 # Install Python dependencies
 RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pipe install gUnicorn
+# Expose Ports
+EXPOSE 5000
+
+# Launch App with gUnicorn
+ENTRYPOINT ["python3"]
+CMD ["run.py"]
