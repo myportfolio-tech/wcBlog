@@ -16,5 +16,5 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 EXPOSE 8000
 
 # Launch App with gUnicorn
-ENTRYPOINT ["python3"]
+# ENTRYPOINT ["python3"]
 CMD ["gunicorn" , "--reload", "-bind", "0.0.0.0:8000", "run:app"]
