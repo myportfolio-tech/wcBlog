@@ -1,5 +1,5 @@
-FROM ubuntu/postgres:latest
+FROM ubuntu
 
-RUN apt-get upgrade
-RUN apt-get install -y python3 python3-pip
+RUN apt-get update
+RUN apt-get install python3 python3-pip
 RUN pip3 --upgrade
