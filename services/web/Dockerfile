@@ -12,6 +12,7 @@ COPY . /weblog
 
 # Install Python dependencies
 RUN pip3 install --no-cache-dir -r requirements.txt
+RUN python setup.py
 # Expose Ports
 EXPOSE 8000
 

@@ -4,17 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "*"
-flask-wtf = "*"
-email-validator = "*"
-flask-sqlalchemy = "*"
-flask-bcrypt = "*"
-flask-login = "*"
-pillow = "*"
-psycopg2-binary = "*"
-itsdangerous = "*"
-flask-mail = "*"
-gunicorn = "*"
 
 [dev-packages]
 
