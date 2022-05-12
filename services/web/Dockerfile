@@ -12,7 +12,7 @@ COPY . /web
 
 # Install Python dependencies
 RUN pip3 install --no-cache-dir -r requirements.txt
-RUN python3 setup.py
+# RUN python3 setup.py
 # Expose Ports
 EXPOSE 8000
 

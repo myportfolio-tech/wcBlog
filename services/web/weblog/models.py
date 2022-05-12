@@ -44,3 +44,13 @@ class Post(db.Model):
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
+
+
+
+def init_db():
+    db.create_all()
+    db.session.commit()
+
+
+if __name__ == '__main__':
+    init_db()
