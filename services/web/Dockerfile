@@ -10,6 +10,10 @@ RUN pip3 install --upgrade pip
 WORKDIR /web
 COPY . /web
 
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV FLASK_APP=run.py
+
 # Install Python dependencies
 RUN pip3 install --no-cache-dir -r requirements.txt
 RUN python3 setup.py
@@ -17,5 +21,6 @@ RUN python3 setup.py
 EXPOSE 8000
 
 # Launch App with gUnicorn or Run.py
-ENTRYPOINT ["python3", "run.py"]
+# ENTRYPOINT ["python3", "run.py"]
+CMD ["flask", "run", "--host=0.0.0.0"]
 #CMD ["gunicorn" , "--reload", "--bind", "0.0.0.0:8000", "run:app"]
