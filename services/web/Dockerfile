@@ -23,4 +23,4 @@ EXPOSE 8000
 # Launch App with gUnicorn or Run.py
 # ENTRYPOINT ["python3", "run.py"]
 #CMD ["flask", "run", "--host=0.0.0.0:8000"]
-CMD ["gunicorn" , "--reload", "--bind", "0.0.0.0:8000", "run:app"]
+# CMD ["gunicorn" , "--reload", "--bind", "0.0.0.0:8000", "run:app"]
