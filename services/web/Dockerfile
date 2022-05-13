@@ -16,6 +16,6 @@ RUN python3 setup.py
 # Expose Ports
 EXPOSE 8000
 
-# Launch App with gUnicorn
-# ENTRYPOINT ["python3", "run.py"]
-CMD ["gunicorn" , "--reload", "--bind", "0.0.0.0:8000", "run:app"]
+# Launch App with gUnicorn or Run.py
+ENTRYPOINT ["python3", "run.py"]
+#CMD ["gunicorn" , "--reload", "--bind", "0.0.0.0:8000", "run:app"]
