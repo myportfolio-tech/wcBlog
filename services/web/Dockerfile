@@ -17,5 +17,5 @@ RUN python3 setup.py
 EXPOSE 8000
 
 # Launch App with gUnicorn
-ENTRYPOINT ["python3", "run.py"]
-# CMD ["gunicorn" , "--reload", "--bind", "0.0.0.0:8000", "run:app"]
+# ENTRYPOINT ["python3", "run.py"]
+CMD ["gunicorn" , "--reload", "--bind", "0.0.0.0:8000", "run:app"]
