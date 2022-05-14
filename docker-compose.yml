@@ -7,9 +7,9 @@ services:
     ports:
       - 5000:8000
 
-nginx:
-  build: ./services/nginx
-  ports:
-    - 5000:80
-  depends_on:
-    - web
+  nginx:
+    build: ./services/nginx
+    ports:
+      - 5000:80
+    depends_on:
+      - web
