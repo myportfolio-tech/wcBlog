@@ -1,2 +1,3 @@
 site.db
 posts.json
+.env.prod
