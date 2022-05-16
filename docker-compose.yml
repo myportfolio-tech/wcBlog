@@ -4,7 +4,7 @@ services:
   web:
     build: ./services/web
     command: gunicorn --bind 0.0.0.0:8000 run:app
-    Expose:
+    expose:
       - 8000
 
   nginx:
