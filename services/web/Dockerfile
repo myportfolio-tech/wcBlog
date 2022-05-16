@@ -14,8 +14,7 @@ COPY . /web
 RUN pip3 install --no-cache-dir -r requirements.txt
 RUN python3 setup.py
 # Expose Ports
-EXPOSE 8000
+# EXPOSE 8000
 
 # Launch App with gUnicorn
 # ENTRYPOINT ["python3"]
-CMD ["gunicorn" , "--reload", "--bind", "0.0.0.0:8000", "run:app"]
