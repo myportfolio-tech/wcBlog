@@ -36,3 +36,6 @@ from weblog.posts.routes import posts
 app.register_blueprint(main)
 app.register_blueprint(users)
 app.register_blueprint(posts)
+
+db.create_all()
+db.session.commit()
