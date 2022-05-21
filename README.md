@@ -1,16 +1,11 @@
-# weBlog - Docker & Docker-compose deployment
+# weBlog -  Student Project
 
-## WeBlog Studet Blog
-The Main branch setups the app to single-host EC2 or Linux server, deployng the Flask application and psql database server on the host.
+## Local Deployment
 
-The docker image has been uploaded to  [`Staffer App`](https://staffer-udacity.herokuapp.com/)
-
-We are implementing a Jinja templated front end (not part of this project) located at  [`Jinja Frontend`](http://udacity-staffer.herokuapp.com/)
-
-The [`Staffer App`](https://staffer-udacity.herokuapp.com/)
-
-1. 
-&nbsp;
+Use the [`Main branch`](https://github.com/myportfolio-tech/wcBlog/tree/main) to set up and test the app locally.
+The web service is a flask app.
+The db service is a postgresql databse.
+In this version, both services run on the same host.
 
 ----
 
@@ -19,10 +14,9 @@ The [`Staffer App`](https://staffer-udacity.herokuapp.com/)
 ### Before you start:
 Ensure docker & docker-compose is intalled in the server [Docker on Ubuntu installation](https://docs.docker.com/engine/install/ubuntu/) 
 
-
 &nbsp;
 
-1. Clone the [repo ](https://www.postgresql.org/download/) into the weblog direcotory
+1. Clone the [repo ](https://github.com/myportfolio-tech/wcBlog) into the weblog direcotory
 
 ```console
 git clone git@github.com:myportfolio-tech/wcBlog.git weblog
@@ -31,100 +25,37 @@ git clone git@github.com:myportfolio-tech/wcBlog.git weblog
 ```console
 cd weblog
 ```
-3. Build the image with docker-compose
+3. The docker-compose file pulls images frrm a public repo.
+You <ins>don't need</ins> to build the image with docker-compose
 
-```console
-docker-compose build
-```
-4. Bring up the docker image
+</br>
+4. Bownload the images and bring up the containers with
 ```console
 docker-compose up
 ```
-
-&nbsp;
-
-
-### Database Setup
-With Postgres running, create the database, create tables, and insert innitial data.
-```bash
-psql postgres < starting_psql_tester.psql
-```
-&nbsp;
+For testing, avoid the -d parameter to troubleshoot flask requests on the command line.
 
 
-### Running the flask server
-
-The app will run locally on port 5000.
-
-
-```bash
-python wsgi.py
-```
+### Test the app locally
 
 Check the app is running [`locally`](http://localhost:5000).
-
 &nbsp;
+You should be able to:
 
-### Project Structure
+1. Register
+2. Sign in
+3. Create a post
+4. Edit a post
+4. Reset password
 
-```sh
-fs-capstone
-    ├───migrations
-    │   └───versions
-    └───staffer
-    │   ├───employees
-    │   ├─────── _init__.py        
-    │   ├───errors
-    │   ├─────── _init__.py      
-    │   ├───main
-    │   ├─────── _init__.py      
-    │   ├───projects
-    │   ├─────── _init__.py      
-    │   ├───utils
-    │   ├─────── _init__.py      
-    │   │
-    │   ├ __init__.py
-    │   ├ config.py
-    │   ├ models.py
-    │
-    ├ .env
-    ├ manage.py
-    ├ test_staffer.py
-    ├ wsgi.py
-
-```
-
-&nbsp;
-
-The main module **staffer** contains the modules:
-
-1. employees
-2. errors
-3. main
-4. projects
-5. utils
-
-These modules are registered as Blueprints in the staffer module __init__ file
-
-
-&nbsp;
-
-### Migrations
-
-
-Because flask_migrate is no longer mantained, this project uses *flask.cli*
-
-If you are migrating to Heroku, you must perform the taasks in the specific order:
-
-Run Locally:
-```concole
-flask db init
-flask db migrate 
-```
-Commit your changes to github.
-
-Run locally and in Heroku:
+### Volumes
+    
+The docker-compose file sets up a persistant volume. 
 ```console
-flask db upgrade
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/ 
 ```
+
+Stop the conatiners and restart them.
+Test that users and posts are still available.
 
