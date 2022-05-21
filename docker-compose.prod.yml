@@ -24,6 +24,8 @@ services:
 
   nginx:
     build: ./services/nginx
+    volumes:
+      - static_volume:/home/weblog/web/weblog/static
     ports:
       - 5000:80
     depends_on:
@@ -31,3 +33,4 @@ services:
 
 volumes:
   postgres_data:
+  static_volume:
