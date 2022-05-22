@@ -24,8 +24,9 @@ services:
 
   nginx:
     build: ./services/nginx
+    container_name: nginx_weblog
     volumes:
-      - static_volume:/home/weblog/web/weblog/static
+      - static_volume:/weblog/services/web/weblog/static
     ports:
       - 5000:80
     depends_on:
