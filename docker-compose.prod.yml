@@ -28,7 +28,7 @@ services:
     volumes:
       - static_volume:/weblog/services/web/weblog/static
     ports:
-      - 5000:80
+      - 1337:80
     depends_on:
       - web
 
