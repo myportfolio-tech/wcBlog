@@ -3,17 +3,17 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-               echo "building"
+               echo "Building Dev"
             }
         }
         stage('Test') { 
             steps {
-               echo "testing"
+               echo "Testing Dev"
             }
         }
         stage('Deploy') { 
             steps {
-               echo "deploying"
+               echo "Deploying Dev"
                echo "Here goes Kubernetes"
             }
         }
