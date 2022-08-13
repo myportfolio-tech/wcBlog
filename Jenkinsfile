@@ -22,6 +22,8 @@ pipeline {
         branch 'main'
       }
       steps{
+          input 'Check Dev environment. Does it look correct?'
+          milestone(1)
           echo "This is the Main Branch"
       }
     
