@@ -16,5 +16,15 @@ pipeline {
       }
     
     }
+    
+    stage('DeploymentToProd') {
+      when {
+        branch 'main'
+      }
+      steps{
+          echo "This is the Main Branch"
+      }
+    
+    }
   }
 }
