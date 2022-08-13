@@ -7,5 +7,14 @@ pipeline {
       }
     
     }
+    stage('DeploymentToDev') {
+      when {
+        branch 'dev'
+      }
+      steps{
+          echo "This is the Dev Branch"
+      }
+    
+    }
   }
 }
