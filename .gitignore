@@ -1,2 +1,11 @@
 site.db
 posts.json
+
+## Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+eks_Aws.pdf
+networking.jpg
+networking.pdf
