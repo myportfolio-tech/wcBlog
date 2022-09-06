@@ -25,7 +25,7 @@ git clone git@github.com:myportfolio-tech/wcBlog.git weblog
 ```console
 cd weblog
 ```
-3. The docker-compose file pulls images frrm a public repo.
+3. The docker-compose file pulls images from a public repo.
 You <ins>don't need</ins> to build the image with docker-compose
 
 </br>
