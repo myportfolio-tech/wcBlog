@@ -1,26 +1,4 @@
-# name: Build Docker Image
-
-# on:
-#   push:
-#     branches: ["main"]
-#   pull_request:
-#     branches: ["main"]
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     defaults:
-#       run:
-#         working-directory: ./services/web/
-#     steps:
-#       - uses: actions/checkout@v3
-#       - name: Build & Push Docker image - Flask App
-#         run: |
-#           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "eduar2020" --password-stdin
-#           docker image build -t eduar2020/weblog:latest .
-#           docker push eduar2020/weblog:latest
-
-name: Build Docker Image - Propper
+name: Build Docker Image
 
 on:
   push:
@@ -31,18 +9,40 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # defaults:
-    #   run:
-    #     working-directory: ./services/web/
+    defaults:
+      run:
+        working-directory: ./services/web/
     steps:
+      - uses: actions/checkout@v3
       - name: Build & Push Docker image - Flask App
-        uses: mr-smithers-excellent/docker-build-push@v5
-        with:
-          directory: ./services/web/
-          run: file="$(ls -al)" && echo $file
-          image: eduar2020/weblog
-          registry: docker.io
-          dockerfile: Dockerfile
-          tags: v1, latest
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "eduar2020" --password-stdin
+          docker image build -t eduar2020/weblog:latest .
+          docker push eduar2020/weblog:latest
+
+# name: Build Docker Image - Propper
+
+# on:
+#   push:
+#     branches: ["main"]
+#   pull_request:
+#     branches: ["main"]
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     # defaults:
+#     #   run:
+#     #     working-directory: ./services/web/
+#     steps:
+#       - name: Build & Push Docker image - Flask App
+#         uses: mr-smithers-excellent/docker-build-push@v5
+#         with:
+#           directory: ./services/web/
+#           run: file="$(ls -al)" && echo $file
+#           image: eduar2020/weblog
+#           registry: docker.io
+#           dockerfile: Dockerfile
+#           tags: v1, latest
+#           username: ${{ secrets.DOCKER_USERNAME }}
+#           password: ${{ secrets.DOCKER_PASSWORD }}
