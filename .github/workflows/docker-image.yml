@@ -37,9 +37,9 @@ jobs:
     steps:
       - name: Build & Push Docker image - Flask App
         uses: mr-smithers-excellent/docker-build-push@v5
-        directory: ./services/web/
         with:
           image: eduar2020/weblog
+          directory: ./services/web/
           registry: docker.io
           tags: v1, latest
           username: ${{ secrets.DOCKER_USERNAME }}
