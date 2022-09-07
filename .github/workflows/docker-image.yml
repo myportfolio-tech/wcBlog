@@ -12,5 +12,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Build the Docker image
+      - name: Build the Flask Application Docker image
+        with:
+          context: ./services/web
         run: docker build . --file ./services/web/Dockerfile --tag eduar2020/weblog:$(date +%s)
