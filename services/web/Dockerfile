@@ -9,7 +9,7 @@ RUN pip3 install --upgrade pip
 # Copy Source Code
 WORKDIR /web
 COPY . /web
-
+RUN file="$(ls -al)" && echo $file
 # Install Python dependencies
 RUN pip3 install --no-cache-dir -r requirements.txt
 # RUN python3 setup.py
