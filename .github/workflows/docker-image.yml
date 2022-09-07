@@ -39,10 +39,10 @@ jobs:
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
           directory: ./services/web/
+          run: file="$(ls -al)" && echo $file
           image: eduar2020/weblog
           registry: docker.io
-          dockerfile: Dockerfile.ci
-          run: ${{ ls -al}}
+          dockerfile: Dockerfile
           tags: v1, latest
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
