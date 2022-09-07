@@ -17,5 +17,5 @@ jobs:
       - name: Build & Push Docker image - Flask App
         run: |
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "eduar2020" --password-stdin
-          docker image build -t eduar2020/weblog:$(date +%s) .
-          docker push eduar2020/weblog:$(date +%s)
+          docker image build -t eduar2020/weblog:latest .
+          docker push eduar2020/weblog:latest
