@@ -31,12 +31,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./services/web/
+    # defaults:
+    #   run:
+    #     working-directory: ./services/web/
     steps:
       - name: Build & Push Docker image - Flask App
         uses: mr-smithers-excellent/docker-build-push@v5
+        directory: ./services/web/
         with:
           image: eduar2020/weblog
           registry: docker.io
