@@ -14,11 +14,15 @@ jobs:
         working-directory: ./services/web/
     steps:
       - uses: actions/checkout@v3
+      - name: Declare Variables
+        id: vars
+        shell: bash
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
       - name: Build & Push Docker image - Flask App
         run: |
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "eduar2020" --password-stdin
-          docker image build -t eduar2020/weblog:latest .
-          docker push eduar2020/weblog:latest
+          docker image build -t eduar2020/weblog:${{ steps.vars.outputs.sha_short }} .
+          docker push eduar2020/weblog:${{ steps.vars.outputs.sha_short }}
 
 # name: Build Docker Image - Propper
 
