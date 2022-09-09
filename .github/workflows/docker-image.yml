@@ -24,6 +24,12 @@ jobs:
           docker image build -t eduar2020/weblog:${{ steps.vars.outputs.sha_short }} .
           docker push eduar2020/weblog:${{ steps.vars.outputs.sha_short }}
 
+      - name: Rollout Deployment Version
+        uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBECONFIG }}
+        with:
+          args: -n main set image deployment/weknowx weknowx=eduar2020/weblog:${{ steps.vars.outputs.sha_short }}
 # name: Build Docker Image - Propper
 
 # on:
