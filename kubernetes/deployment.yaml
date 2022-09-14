@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: main
+  labels:
+    app: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          env:
+            - name: POSTGRES_USER
+              value: weblog
+            - name: POSTGRES_PASSWORD
+              value: weblog
+            - name: POSTGRES_DB
+              value: weblog_dev
+          image: postgres:13-alpine
+          ports:
+            - containerPort: 5432
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weknowx
+  namespace: main
+  labels:
+    app: weknowx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weknowx
+  template:
+    metadata:
+      labels:
+        app: weknowx
+    spec:
+      containers:
+        - name: weknowx
+          image: eduar2020/weblog:0.1
+          ports:
+            - containerPort: 5000

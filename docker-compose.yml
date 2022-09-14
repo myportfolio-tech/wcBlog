@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  web:
+    # build: ./services/web
+    image: eduar2020/weblog:0.1
+    container_name: web_weblog
+    command: gunicorn --bind 0.0.0.0:5000 run:app
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+      
+  db:
+    #image: postgres:13-alpine
+    image: eduar2020/psql:0.1
+    container_name: psql_weblog
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=weblog
+      - POSTGRES_PASSWORD=weblog
+      - POSTGRES_DB=weblog_dev
+
+volumes:
+  postgres_data:
