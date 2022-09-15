@@ -34,41 +34,32 @@ jobs:
           cd ./services/web/
           python -m pytest
 
-# name: Build Docker Image
+  docker-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./services/web/
+    steps:
+      - uses: actions/checkout@v3
+      - name: Declare Variables
+        id: vars
+        shell: bash
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+      - name: Build & Push Docker image - Flask App
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "eduar2020" --password-stdin
+          docker image build -t eduar2020/weblog:${{ steps.vars.outputs.sha_short }} .
+          docker push eduar2020/weblog:${{ steps.vars.outputs.sha_short }}
+      # - name: Configure AWS credentials
+      #   uses: aws-actions/configure-aws-credentials@v1
+      #   with:
+      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws-region: us-east-1
 
-# on:
-#   push:
-#     branches: ["main"]
-#   pull_request:
-#     branches: ["main"]
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     defaults:
-#       run:
-#         working-directory: ./services/web/
-#     steps:
-#       - uses: actions/checkout@v3
-#       - name: Declare Variables
-#         id: vars
-#         shell: bash
-#         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-#       - name: Build & Push Docker image - Flask App
-#         run: |
-#           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "eduar2020" --password-stdin
-#           docker image build -t eduar2020/weblog:${{ steps.vars.outputs.sha_short }} .
-#           docker push eduar2020/weblog:${{ steps.vars.outputs.sha_short }}
-#       - name: Configure AWS credentials
-#         uses: aws-actions/configure-aws-credentials@v1
-#         with:
-#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#           aws-region: us-east-1
-
-#       - name: Rollout Deployment Version
-#         uses: kodermax/kubectl-aws-eks@master
-#         env:
-#           KUBE_CONFIG_DATA: ${{ secrets.KUBECONFIG }}
-#         with:
-#           args: -n main set image deployment/weknowx weknowx=eduar2020/weblog:${{ steps.vars.outputs.sha_short }}
+      # - name: Rollout Deployment Version
+      #   uses: kodermax/kubectl-aws-eks@master
+      #   env:
+      #     KUBE_CONFIG_DATA: ${{ secrets.KUBECONFIG }}
+      #   with:
+      #     args: -n main set image deployment/weknowx weknowx=eduar2020/weblog:${{ steps.vars.outputs.sha_short }}
