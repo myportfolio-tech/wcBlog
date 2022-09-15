@@ -35,6 +35,7 @@ jobs:
           python -m pytest
 
   docker-build:
+    needs: code-testing
     runs-on: ubuntu-latest
     continue-on-error: false
     if: ${{ github.event_name == 'push' && contains( github.event.head_commit.message, 'docker-build') }}
