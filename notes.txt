@@ -6,3 +6,4 @@ We are making another change
 >>>>>>> 5553153324bcbc3b2f4e8bba107ccad5855d624f
 This is a simple test 
 Added the docker-build
+Added the eks build
