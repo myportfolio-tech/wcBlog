@@ -18,6 +18,7 @@ metadata:
   name: weknowx
   namespace: main
 spec:
+  type: LoadBalancer
   selector:
     app: weknowx
   ports:
