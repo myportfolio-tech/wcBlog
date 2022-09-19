@@ -48,7 +48,7 @@ override.tf.json
 .terraformrc
 terraform.rc
 terraform/.terraform.lock.hcl
-/terraform/ 
+
 
 *.pyc
 *.pyo
