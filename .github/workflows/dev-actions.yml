@@ -37,7 +37,7 @@ jobs:
   docker-build:
     needs: code-testing
     runs-on: ubuntu-latest
-    continue-on-error: false
+    continue-on-error: true
     if: ${{ github.event_name == 'push' && contains( github.event.head_commit.message, 'docker-build') }}
     defaults:
       run:
