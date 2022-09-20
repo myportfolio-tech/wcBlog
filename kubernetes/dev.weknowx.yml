@@ -21,9 +21,9 @@ spec:
           image: eduar2020/weblog:latest
           ports:
             - containerPort: 5000
-          # env:
-          #   - name: DATABASE_URL
-          #     value: "mysql+mysqlconnector://root:root@mysql-service:3306/db"
+          env:
+            - name: DATABASE_URL
+              value: "postgresql://weblog:weblog@database-main:5432/weblog_dev"
 
 ---
 apiVersion: v1
