@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1 # different components use different api version, so look it up.
+kind: Deployment
+metadata:
+  name: dev-weknowx # deployment name
+  namespace: dev
+  labels:
+    app: dev-weknowx # this label will be selected by Service
+spec:
+  replicas: 1
+  selector: # find
+    matchLabels:
+      app: dev-weknowx
+  template: # this configuration applies to a Pod
+    metadata:
+      labels:
+        app: dev-weknowx # creates a key value pair  'app: mongodb' so that deployment can create a connection to the pod that matches with this pair
+    spec: # blueprint of a pod
+      containers:
+        - name: dev-weknowx # container name
+          image: eduar2020/weblog:latest
+          ports:
+            - containerPort: 5000
+          # env:
+          #   - name: DATABASE_URL
+          #     value: "mysql+mysqlconnector://root:root@mysql-service:3306/db"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dev-weknowx
+  namespace: dev
+spec:
+  selector:
+    app: dev-weknowx # creates a connection between service and deployment or pods in deployment
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
