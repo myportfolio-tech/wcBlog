@@ -24,7 +24,7 @@ spec:
               value: weblog
             - name: POSTGRES_DB
               value: weblog_dev
-          image: postgres:13-alpine
+          image: eduardo2020/psql
           ports:
             - containerPort: 3306
 
