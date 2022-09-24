@@ -79,11 +79,11 @@ jobs:
     needs: docker-build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Get Variable
         id: vars
         shell: bash
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-      - uses: actions/checkout@v2
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
@@ -95,5 +95,5 @@ jobs:
           SLACK_ICON_EMOJI: ":nerd_face:"
           SLACK_MESSAGE: "The Docker image weknowx=eduar2020/weblog:${{ steps.vars.outputs.sha_short }} pushed"
           SLACK_TITLE: Build & Push Complete
-          SLACK_USERNAME: pipe-pot
+          SLACK_USERNAME: pipe-bot
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
