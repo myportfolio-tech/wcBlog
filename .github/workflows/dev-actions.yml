@@ -88,6 +88,6 @@ jobs:
           SLACK_ICON: https://github.com/rtCamp.png?size=48
           SLACK_ICON_EMOJI: ":nerd_face:"
           SLACK_MESSAGE: "Post Content :rocket:"
-          SLACK_TITLE: Post Title
+          SLACK_TITLE: Build Cpmplete
           SLACK_USERNAME: pipe-pot
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
