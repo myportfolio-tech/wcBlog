@@ -80,6 +80,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get Variable
+        id: vars
+        shell: bash
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
       - uses: actions/checkout@v2
 
