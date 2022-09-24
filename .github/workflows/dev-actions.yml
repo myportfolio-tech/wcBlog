@@ -79,10 +79,13 @@ jobs:
     needs: docker-build
     runs-on: ubuntu-latest
     steps:
+      - name: Get Variable
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
       - uses: actions/checkout@v2
+
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
         env:
           SLACK_CHANNEL: pipelines
           SLACK_COLOR: "good" ## ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
