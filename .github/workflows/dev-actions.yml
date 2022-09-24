@@ -76,7 +76,7 @@ jobs:
 
   slackNotification:
     name: Slack Notification
-    needs: code-testing
+    needs: docker-build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -87,7 +87,7 @@ jobs:
           SLACK_COLOR: "good" ## ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
           SLACK_ICON: https://github.com/rtCamp.png?size=48
           SLACK_ICON_EMOJI: ":nerd_face:"
-          SLACK_MESSAGE: "Post Content :rocket:"
-          SLACK_TITLE: Build Cpmplete
+          SLACK_MESSAGE: "The Docker image weknowx=eduar2020/weblog:${{ steps.vars.outputs.sha_short }} pushed"
+          SLACK_TITLE: Build & Push Complete
           SLACK_USERNAME: pipe-pot
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
