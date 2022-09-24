@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1 # different components use different api version, so look it up.
+kind: Deployment
+metadata:
+  name: microblog # deployment name
+  labels:
+    app: microblog # this label will be selected by Service
+spec:
+  replicas: 1
+  selector: # find
+    matchLabels:
+      app: microblog
+  template: # this configuration applies to a Pod
+    metadata:
+      labels:
+        app: microblog # creates a key value pair  'app: mongodb' so that deployment can create a connection to the pod that matches with this pair
+    spec: # blueprint of a pod
+      containers:
+        - name: microblog # container name
+          image: junglepolice/microblog:0.2.0
+          ports:
+            - containerPort: 5000
+          env:
+            - name: DATABASE_URL
+              value: "mysql+mysqlconnector://root:root@mysql-service:3306/db"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: microblog-service
+spec:
+  selector:
+    app: microblog # creates a connection between service and deployment or pods in deployment
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000

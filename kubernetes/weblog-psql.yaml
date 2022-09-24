@@ -1,0 +1,36 @@
+apiVersion: apps/v1 # different components use different api version, so look it up.
+kind: Deployment
+metadata:
+  name: mysql # deployment name
+  labels:
+    app: mysql # this label will be selected by Service
+spec:
+  replicas: 1
+  selector: # find
+    matchLabels:
+      app: mysql 
+  template: # this configuration applies to a Pod
+    metadata:
+      labels:
+        app: mysql # creates a key value pair  'app: mongodb' so that deployment can create a connection to the pod that matches with this pair
+    spec:  # blueprint of a pod
+      containers:
+      - name: mysql # container name
+        image: junglepolice/mysql:0.0.1
+        ports:
+        - containerPort: 3306
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+spec:
+  selector:
+    app: mysql # creates a connection between service and deployment or pods in deployment
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+
